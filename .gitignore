@@ -1,0 +1,9 @@
+# My cookie token is stored in defaults.json locally, so no need to
+#   store that on github
+defaults.json
+
+# Temp files
+/__pycache__
+
+# Data files
+data/

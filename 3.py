@@ -75,7 +75,7 @@ print(f'The sum of all part numbers is {sum}')
 # Part 2 ---------------------------------------------------
 
 # This will check the coords around the char, and 
-# if it touches two seperate partnumbers, will return True
+# if it touches two seperate partnumbers, will return their product
 def findRatio(coord):
     good_neighbors = []
 
@@ -98,13 +98,16 @@ def findRatio(coord):
             except:
                 continue
     
+    # We should now have a list of 'good neighbors', and if there are two in the list,
+    # we return their product
     if len(good_neighbors) == 2:
         return int(list(good_neighbors[0].keys())[0]) * int(list(good_neighbors[1].keys())[0])
     else:
         return 0
 
+# Now all that's left to do is loop through the chars to find the gears,
+# then add their ratio to the sum
 sumOfRatios = 0
-
 for y in range(len(data)):
     row = data[y]
     for x in range(len(row)):

@@ -68,8 +68,8 @@ print(f'For part one, the lowest number in locations is {min(conversions)}')
 
 # After thinking about this, the easiest solution I can think of is to 
 # create a series of range borders, so if we have a number like:
-# '10 15' - instead of keeping a list of [10,11,12,...25], we just keep
-# track of the borders, so [10, 25]. Then we should be able to do simple
+# '10 15' - instead of keeping a list of [10, 11, 12, ...24], we just keep
+# track of the borders, so [10, 24]. Then we should be able to do simple
 # math for each of the mapping instructions
 
 # This time I'll call my main list 'spans', since they're ranges of seed values
@@ -77,7 +77,6 @@ seeds = data[0].split(' ')[1:]
 seeds = [int(x) for x in seeds]
 
 spans = []
-
 for i in range(0, len(seeds), 2):
     span = []
     span.append(seeds[i])

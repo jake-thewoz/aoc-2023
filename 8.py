@@ -22,25 +22,25 @@ data = new_data
 # We're going to use a simple while loop to iterate through
 # the instructions
 
-# current_location = 'AAA'
-# counter = 1
-# i = 0
+current_location = 'AAA'
+counter = 1
+i = 0
 
-# while True:
-#     inst = instructions[i]
-#     if i == len(instructions) - 1:
-#         i = 0
-#     else:
-#         i += 1
-#     if inst == 'L':
-#         current_location = data[current_location]['left']
-#     if inst == 'R':
-#         current_location = data[current_location]['right']
-#     if current_location == 'ZZZ':
-#         print(f'The number of steps for part one was {counter}')
-#         break
-#     else:
-#         counter += 1
+while True:
+    inst = instructions[i]
+    if i == len(instructions) - 1:
+        i = 0
+    else:
+        i += 1
+    if inst == 'L':
+        current_location = data[current_location]['left']
+    if inst == 'R':
+        current_location = data[current_location]['right']
+    if current_location == 'ZZZ':
+        print(f'The number of steps for part one was {counter}')
+        break
+    else:
+        counter += 1
 
 # Part Two -------------------------------------------
 

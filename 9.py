@@ -17,6 +17,7 @@ print()
 # Part One ------------------------------------
 
 answers = []
+diff_list = []
 
 for row in data:
     differences = []
@@ -41,5 +42,18 @@ for row in data:
         answer += row[-1]
     
     answers.append(answer)
+    diff_list.append(differences)
 
-print(f'The sum of all values for part one is {sum(answers)}')    
+print(f'The sum of all values for part one is {sum(answers)}')
+
+# Part Two ------------------------------------------------------------
+
+# This is kinda the same problem
+
+second_answer = 0
+for diff in diff_list:
+    subtractor = 0
+    for i in range(-2, -len(diff), -1):
+        subtractor = diff[i][0] - subtractor
+    second_answer += diff[0][0] - subtractor
+print(f'The sum of beginning numbers for part two is {second_answer}')

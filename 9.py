@@ -1,6 +1,6 @@
 import data_getter
 
-data = data_getter.get_data('9_sample').splitlines()
+data = data_getter.get_data('9').splitlines()
 
 # Data prep
 
@@ -12,6 +12,7 @@ for row in data:
 data = new_data
 
 [print(row) for row in data]
+print()
 
 # Part One ------------------------------------
 
@@ -19,6 +20,7 @@ answers = []
 
 for row in data:
     differences = []
+    differences.append(row)
     not_all_zeroes = True
     current_row = row
 
@@ -34,4 +36,10 @@ for row in data:
         differences.append(new_diff)
         current_row = new_diff
 
-    print(differences)
+    answer = 0
+    for row in differences:
+        answer += row[-1]
+    
+    answers.append(answer)
+
+print(f'The sum of all values for part one is {sum(answers)}')    

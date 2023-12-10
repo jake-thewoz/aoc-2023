@@ -49,6 +49,12 @@ print(two_tiles)
 visited.update(two_tiles)
 
 # Now we'll make a tool for finding the next tile
+# -----------------------------------------------------------
+# The problem with this approach is that we need to only look at
+# tiles that our tile connects to, instead of all possible connecting tiles.
+# The way I've implemented this first doesn't take our current tile's shape
+# into account
+# -----------------------------------------------------------
 def find_next(tile, previous_tiles):
     # Here I'll couch these with exceptions, so we don't accidentally do
     # negative indexing or index out of bounds

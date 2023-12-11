@@ -1,6 +1,6 @@
 import data_getter
 
-data = data_getter.get_data('10_sample').splitlines()
+data = data_getter.get_data('10').splitlines()
 
 [print(row) for row in data]
 print()
@@ -49,27 +49,21 @@ print(two_tiles)
 visited.update(two_tiles)
 
 # Now we'll make a tool for finding the next tile
-# -----------------------------------------------------------
-# The problem with this approach is that we need to only look at
-# tiles that our tile connects to, instead of all possible connecting tiles.
-# The way I've implemented this first doesn't take our current tile's shape
-# into account
-# -----------------------------------------------------------
 def find_next(tile, previous_tiles):
-    # Here I'll couch these with exceptions, so we don't accidentally do
-    # negative indexing or index out of bounds
-    if tile[0] != 0:
-        if (data[tile[0] - 1][tile[1]]) in w_options and ((tile[0] - 1, tile[1])) not in previous_tiles:
-            return ((tile[0] - 1, tile[1]))
-    if tile[0] != len(data) - 1:
-        if (data[tile[0] + 1][tile[1]]) in e_options and ((tile[0] + 1, tile[1])) not in previous_tiles:
-            return ((tile[0] + 1, tile[1]))
-    if tile[1] != 0:
+    # trying to think of an efficient way to do this...
+    # So if the tile connects to the north tile, check the north tile
+    if data[tile[0]][tile[1]] in s_options:
         if (data[tile[0]][tile[1] - 1]) in n_options and ((tile[0], tile[1] - 1)) not in previous_tiles:
             return ((tile[0], tile[1] - 1))
-    if tile[1] != len(data[0]) - 1:
+    if data[tile[0]][tile[1]] in n_options:
         if (data[tile[0]][tile[1] + 1]) in s_options and ((tile[0], tile[1] + 1)) not in previous_tiles:
             return ((tile[0], tile[1] + 1))
+    if data[tile[0]][tile[1]] in e_options:
+        if (data[tile[0] - 1][tile[1]]) in w_options and ((tile[0] - 1, tile[1])) not in previous_tiles:
+            return ((tile[0] - 1, tile[1]))
+    if data[tile[0]][tile[1]] in w_options:
+        if (data[tile[0] + 1][tile[1]]) in e_options and ((tile[0] + 1, tile[1])) not in previous_tiles:
+            return ((tile[0] + 1, tile[1]))
 
 def update_print_data(visited):
     for x in range(len(data)):
@@ -81,7 +75,6 @@ def print_the_data():
     for row in print_data:
         print(row)
 
-
 # Here's our main loop to go through the pipes
 done = False
 count = 1
@@ -89,17 +82,17 @@ current_tiles = set(two_tiles)
 
 while not done:
     visited.update(current_tiles)
-    print(f'Visited tiles: {visited}')
-    print(f'Current tiles: {current_tiles}')
+    # print(f'Visited tiles: {visited}')
+    # print(f'Current tiles: {current_tiles}')
     update_print_data(visited)
-    print_the_data()
+    # print_the_data()
     first = find_next(list(current_tiles)[0], visited)
     second = find_next(list(current_tiles)[1], visited)
     count += 1
     current_tiles = set()
     current_tiles.add(first)
     current_tiles.add(second)
-    x = input()
+    # x = input()
 
     if len(current_tiles) == 1:
         done = True
